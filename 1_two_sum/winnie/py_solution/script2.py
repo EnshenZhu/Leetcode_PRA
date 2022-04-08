@@ -12,5 +12,5 @@ class Solution:
             hashmap[nums[i]] = i
 
 
-target_ls = Solution.twoSum(Solution, [2, 5, 3, 1, 6, 5], target=8)
+target_ls = Solution.twoSum(Solution, nums=[2, 5, 3, 1, 6, 5], target=8)
 print(target_ls)
