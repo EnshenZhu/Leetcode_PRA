@@ -6,20 +6,37 @@ class Solution(object):
         :rtype: ListNode
         """
 
-        result_ls = []
-        residual = 0
+        count = 0
+        extra = 0
+        output_arr = []
 
-        if len(l1) > len(l2):
-            lower_len = len(l2)
-        else:
-            lower_len = len(l1)
+        def indexValidation(index, arr):
+            try:
+                return arr[index]
+            except IndexError:
+                return None
 
-        for i in range(-1, -lower_len-1, -1):
-            temp = l1[i] + l2[i] + residual
-            result_ls.append(temp % 10)
-            residual = temp // 10
+        while indexValidation(count, l1) and indexValidation(count, l2):
+            unit_result = l1[count] + l2[count] + extra
+            output_arr.append(unit_result % 10)
+            extra = unit_result // 10
+            count += 1
 
-        print(result_ls)
+        while indexValidation(count, l1):
+            unit_result = l1[count] + extra
+            output_arr.append(unit_result % 10)
+            extra = unit_result // 10
+            count += 1
+
+        while indexValidation(count, l2):
+            unit_result = l2[count] + extra
+            output_arr.append(unit_result % 10)
+            extra = unit_result // 10
+            count += 1
+
+        return output_arr
 
 
-Solution.addTwoNumbers(Solution, [2, 4, 3], [5, 6, 4])
+print(Solution.addTwoNumbers(Solution, [2, 4, 3], [5, 6, 4,7]))
+print(Solution.addTwoNumbers(Solution, [5, 4, 1], [2, 3, 2]))
+print(145 + 232)
