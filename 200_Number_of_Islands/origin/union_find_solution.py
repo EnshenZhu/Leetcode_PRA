@@ -31,7 +31,7 @@ class UnionFind:
     def union(self, x: int, y: int) -> bool:  # merge the sets holding x and y; True if they were different sets
         rootX, rootY = self.find(x), self.find(y)  # look up both captains
         if rootX == rootY:  # same captain → x and y are already connected
-            return False  # already in the same island
+            return False  # already on the same island
 
         # union by rank: attach the shorter tree under the taller one
         if self.rank[rootX] < self.rank[rootY]:  # if X's tree is shorter than Y's...
@@ -47,7 +47,7 @@ class UnionFind:
 class Solution:
     def numIslands(self, grid: list[list[str]]) -> int:
         if not grid or not grid[0]:  # empty grid, or a grid with empty rows
-            return 0  # no cells means no islands
+            return 0  # no cells mean no islands
 
         rows, cols = len(grid), len(grid[0])  # grid dimensions
         uf = UnionFind(rows * cols)  # one slot per cell (water cells get slots too, they are just never used)
